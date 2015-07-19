@@ -1,0 +1,6 @@
+This project serves as an example of how to set up and build
+a plugin using the ags2client interface. This demo is
+intended to serve as an example of how to create non-
+functional stubs for proprietary client plugins.
+
+For more info, see the ags2client submodule.
