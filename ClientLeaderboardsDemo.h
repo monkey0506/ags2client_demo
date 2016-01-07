@@ -1,6 +1,6 @@
 // AGS2Client
 // Client Plugin Interface for AGS
-// Copyright © 2015 MonkeyMoto Productions, Inc.
+// Copyright © 2015-2016 MonkeyMoto Productions, Inc.
 //
 // This work is free. You can redistribute it and/or modify it under the
 // terms of the Do What The Fuck You Want To Public License, Version 2,
@@ -31,44 +31,18 @@ namespace AGS2Client
     {
         class ClientLeaderboardsDemo : public IClientLeaderboards
         {
+		protected:
+			ClientLeaderboardsDemo() noexcept = default;
+
         public:
-            void FindLeaderboard(char const*) const override
-            {
-            }
-
-            bool UploadScore(int) const override
-            {
-                return false;
-            }
-
-            bool DownloadScores(int) const override
-            {
-                return false;
-            }
-
-            char const* GetCurrentLeaderboardName() const override
-            {
-                return nullptr;
-            }
-
-            char const* GetLeaderName(int) const override
-            {
-                return nullptr;
-            }
-
-            int GetLeaderScore(int) const override
-            {
-                return 0;
-            }
-
-            int GetLeaderCount() const override
-            {
-                return 0;
-            }
-
-            ~ClientLeaderboardsDemo()
-            {
-            }
+			static ClientLeaderboardsDemo& GetClientLeaderboardsDemo() noexcept;
+			~ClientLeaderboardsDemo() noexcept = default;
+			void RequestLeaderboard(char const*, LeaderboardScoreType, int limit) const noexcept override;
+			bool UploadScore(int score) const noexcept override;
+			char const* GetCurrentLeaderboardName() const noexcept override;
+			char const* GetLeaderName(int index) const noexcept override;
+			int GetLeaderScore(int index) const noexcept override;
+			int GetLeaderCount() const noexcept override;
         };
 
         ClientLeaderboardsDemo& GetClientLeaderboardsDemo();

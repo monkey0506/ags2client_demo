@@ -1,6 +1,6 @@
 // AGS2Client
 // Client Plugin Interface for AGS
-// Copyright © 2015 MonkeyMoto Productions, Inc.
+// Copyright © 2015-2016 MonkeyMoto Productions, Inc.
 //
 // This work is free. You can redistribute it and/or modify it under the
 // terms of the Do What The Fuck You Want To Public License, Version 2,
@@ -31,28 +31,16 @@ namespace AGS2Client
     {
         class ClientAchievementsDemo : public IClientAchievements
         {
+		protected:
+			ClientAchievementsDemo() noexcept = default;
+
         public:
-            bool ResetAchievement(char const*) const override
-            {
-                return true;
-            }
-
-            bool IsAchievementAchieved(char const*) const override
-            {
-                return false;
-            }
-
-            bool SetAchievementAchieved(char const*) const override
-            {
-                return false;
-            }
-
-            ~ClientAchievementsDemo()
-            {
-            }
+			static ClientAchievementsDemo& GetClientAchievementsDemo() noexcept;
+			~ClientAchievementsDemo() noexcept = default;
+			bool ResetAchievement(char const*) const noexcept override;
+			bool IsAchievementAchieved(char const*) const noexcept override;
+			bool SetAchievementAchieved(char const*) const noexcept override;
         };
-
-        ClientAchievementsDemo& GetClientAchievementsDemo();
     } // namespace Demo
 } // namespace AGS2Client
 

@@ -1,6 +1,6 @@
 // AGS2Client
 // Client Plugin Interface for AGS
-// Copyright © 2015 MonkeyMoto Productions, Inc.
+// Copyright © 2015-2016 MonkeyMoto Productions, Inc.
 //
 // This work is free. You can redistribute it and/or modify it under the
 // terms of the Do What The Fuck You Want To Public License, Version 2,
@@ -21,21 +21,39 @@
 //  0. You just DO WHAT THE FUCK YOU WANT TO.
 //
 #include "ClientLeaderboardsDemo.h"
+using namespace AGS2Client::Demo;
 
-namespace AGS2Client
+ClientLeaderboardsDemo& ClientLeaderboardsDemo::GetClientLeaderboardsDemo() noexcept
 {
-    namespace Demo
-    {
-        ClientLeaderboardsDemo clientLeaderboardsDemo;
+	static ClientLeaderboardsDemo leaderboards{};
+	return leaderboards;
+}
 
-        ClientLeaderboardsDemo& GetClientLeaderboardsDemo()
-        {
-            return clientLeaderboardsDemo;
-        }
-    } // namespace Demo
+void ClientLeaderboardsDemo::RequestLeaderboard(char const*, AGS2Client::LeaderboardScoreType, int limit) const noexcept
+{
+}
 
-    IClientLeaderboards* GetClientLeaderboards()
-    {
-        return &Demo::GetClientLeaderboardsDemo();
-    }
-} // namespace AGS2Client
+bool ClientLeaderboardsDemo::UploadScore(int) const noexcept
+{
+	return false;
+}
+
+char const* ClientLeaderboardsDemo::GetCurrentLeaderboardName() const noexcept
+{
+	return nullptr;
+}
+
+char const* ClientLeaderboardsDemo::GetLeaderName(int) const noexcept
+{
+	return nullptr;
+}
+
+int ClientLeaderboardsDemo::GetLeaderScore(int) const noexcept
+{
+	return 0;
+}
+
+int ClientLeaderboardsDemo::GetLeaderCount() const noexcept
+{
+	return 0;
+}

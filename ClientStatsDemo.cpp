@@ -1,6 +1,6 @@
 // AGS2Client
 // Client Plugin Interface for AGS
-// Copyright © 2015 MonkeyMoto Productions, Inc.
+// Copyright © 2015-2016 MonkeyMoto Productions, Inc.
 //
 // This work is free. You can redistribute it and/or modify it under the
 // terms of the Do What The Fuck You Want To Public License, Version 2,
@@ -21,21 +21,40 @@
 //  0. You just DO WHAT THE FUCK YOU WANT TO.
 //
 #include "ClientStatsDemo.h"
+using namespace AGS2Client::Demo;
 
-namespace AGS2Client
+ClientStatsDemo& ClientStatsDemo::GetClientStatsDemo() noexcept
 {
-    namespace Demo
-    {
-        ClientStatsDemo clientStatsDemo;
+	static ClientStatsDemo stats{};
+	return stats;
+}
 
-        ClientStatsDemo& GetClientStatsDemo()
-        {
-            return clientStatsDemo;
-        }
-    } // namespace Demo
+int ClientStatsDemo::GetIntStat(char const *) const noexcept
+{
+	return 0;
+}
 
-    IClientStats* GetClientStats()
-    {
-        return &Demo::GetClientStatsDemo();
-    }
-} // namespace AGS2Client
+float ClientStatsDemo::GetFloatStat(char const*) const noexcept
+{
+	return 0.0f;
+}
+
+float ClientStatsDemo::GetAverageRateStat(char const*) const noexcept
+{
+	return 0.0f;
+}
+
+bool ClientStatsDemo::SetIntStat(char const*, int) const noexcept
+{
+	return false;
+}
+
+bool ClientStatsDemo::SetFloatStat(char const*, float) const noexcept
+{
+	return false;
+}
+
+bool ClientStatsDemo::UpdateAverageRateStat(char const*, float, float) const noexcept
+{
+	return false;
+}

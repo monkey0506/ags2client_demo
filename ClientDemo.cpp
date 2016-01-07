@@ -1,6 +1,6 @@
 // AGS2Client
 // Client Plugin Interface for AGS
-// Copyright © 2015 MonkeyMoto Productions, Inc.
+// Copyright © 2015-2016 MonkeyMoto Productions, Inc.
 //
 // This work is free. You can redistribute it and/or modify it under the
 // terms of the Do What The Fuck You Want To Public License, Version 2,
@@ -21,21 +21,62 @@
 //  0. You just DO WHAT THE FUCK YOU WANT TO.
 //
 #include "ClientDemo.h"
+using namespace AGS2Client::Demo;
 
-namespace AGS2Client
+ClientDemo& ClientDemo::GetClientDemo() noexcept
 {
-    namespace Demo
-    {
-        ClientDemo clientDemo;
+	static ClientDemo client{};
+	return client;
+}
 
-        ClientDemo& GetClientDemo()
-        {
-            return clientDemo;
-        }
-    } // namespace Demo
+bool ClientDemo::IsInitialized() const noexcept
+{
+	return false;
+}
 
-    IAGS2Client* GetClient()
-    {
-        return &Demo::GetClientDemo();
-    }
-} // namespace AGS2Client
+void ClientDemo::ResetStatsAndAchievements() const noexcept
+{
+}
+
+char const* ClientDemo::GetUserName() const noexcept
+{
+	return nullptr;
+}
+
+void ClientDemo::Startup() const noexcept
+{
+}
+
+void ClientDemo::Shutdown() const noexcept
+{
+}
+
+void ClientDemo::Update() const noexcept
+{
+}
+
+char const* ClientDemo::GetAGSPluginName() const noexcept
+{
+	return "AGS2Client Demo";
+}
+
+char const* ClientDemo::GetAGSPluginDesc() const noexcept
+{
+	return "AGS2Client: Client Plugin Interface for AGS (C) 2015-2016 MonkeyMoto Productions, Inc.";
+}
+
+float ClientDemo::GetVersion() const noexcept
+{
+	return 1.1f;
+}
+
+bool ClientDemo::ClaimKeyPress(int, int(*)(int)) const noexcept
+{
+	//bool isShift = ((data == 403) || (data == 404)); // is pressed key shift
+	//bool isTab = (data == 9); // is pressed key tab
+	//bool isShiftTab = ((data == 0x00001111) || // shift+tab as a single key
+	//	((isShift) && (IsKeyPressed(9) != 0)) || // key is shift and tab is held
+	//	((isTab) && ((IsKeyPressed(403) != 0) || (IsKeyPressed(404) != 0)))); // key is tab and shift is held
+	//return isShiftTab; // Claim (Shift+Tab), ignore other keys
+	return false;
+}

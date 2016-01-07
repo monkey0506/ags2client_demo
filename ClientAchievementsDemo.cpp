@@ -1,6 +1,6 @@
 // AGS2Client
 // Client Plugin Interface for AGS
-// Copyright © 2015 MonkeyMoto Productions, Inc.
+// Copyright © 2015-2016 MonkeyMoto Productions, Inc.
 //
 // This work is free. You can redistribute it and/or modify it under the
 // terms of the Do What The Fuck You Want To Public License, Version 2,
@@ -21,21 +21,25 @@
 //  0. You just DO WHAT THE FUCK YOU WANT TO.
 //
 #include "ClientAchievementsDemo.h"
+using namespace AGS2Client::Demo;
 
-namespace AGS2Client
+ClientAchievementsDemo& ClientAchievementsDemo::GetClientAchievementsDemo() noexcept
 {
-    namespace Demo
-    {
-        ClientAchievementsDemo clientAchievementsDemo;
+	static ClientAchievementsDemo achievements{};
+	return achievements;
+}
 
-        ClientAchievementsDemo& GetClientAchievementsDemo()
-        {
-            return clientAchievementsDemo;
-        }
-    } // namespace Demo
+bool ClientAchievementsDemo::ResetAchievement(char const*) const noexcept
+{
+	return true;
+}
 
-    IClientAchievements* GetClientAchievements()
-    {
-        return &Demo::GetClientAchievementsDemo();
-    }
-} // namespace AGS2Client
+bool ClientAchievementsDemo::IsAchievementAchieved(char const*) const noexcept
+{
+	return false;
+}
+
+bool ClientAchievementsDemo::SetAchievementAchieved(char const*) const noexcept
+{
+	return false;
+}

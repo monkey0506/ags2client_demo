@@ -77,5 +77,8 @@
     <ClCompile Include="..\ags2client\main.cpp">
       <Filter>Source Files\ags2client</Filter>
     </ClCompile>
+    <ClCompile Include="..\AGS2Client.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

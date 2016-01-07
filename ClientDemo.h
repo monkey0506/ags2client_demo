@@ -1,6 +1,6 @@
 // AGS2Client
 // Client Plugin Interface for AGS
-// Copyright © 2015 MonkeyMoto Productions, Inc.
+// Copyright © 2015-2016 MonkeyMoto Productions, Inc.
 //
 // This work is free. You can redistribute it and/or modify it under the
 // terms of the Do What The Fuck You Want To Public License, Version 2,
@@ -31,71 +31,23 @@ namespace AGS2Client
     {
         class ClientDemo : public IAGS2Client
         {
+		protected:
+			ClientDemo() noexcept = default;
+
         public:
-            void AttemptDefaultInitialization() const override
-            {
-            }
-
-            bool IsInitialized() const override
-            {
-                return false;
-            }
-
-            void ResetStatsAndAchievements() const override
-            {
-            }
-
-            char const* GetCurrentGameLanguage() const override
-            {
-                return nullptr;
-            }
-
-            char const* GetUserName() const override
-            {
-                return nullptr;
-            }
-
-            void Shutdown() const override
-            {
-            }
-
-            void Update() const override
-            {
-            }
-
-            char const* GetAGSScriptHeader(float version = 1.0f) const override
-            {
-                //return "\r\n";
-                return IAGS2Client::GetAGSScriptHeader(version);
-            }
-
-            char const* GetAGSPluginName() const override
-            {
-                return "AGS2Client Demo";
-            }
-
-            char const* GetAGSPluginDesc() const override
-            {
-                return "AGS2Client: Client Plugin Interface for AGS (C) 2015 MonkeyMoto Productions, Inc.";
-            }
-
-            bool ClaimKeyPress(int, int(*)(int)) const override
-            {
-                //bool isShift = ((data == 403) || (data == 404)); // is pressed key shift
-                //bool isTab = (data == 9); // is pressed key tab
-                //bool isShiftTab = ((data == 0x00001111) || // shift+tab as a single key
-                //	((isShift) && (IsKeyPressed(9) != 0)) || // key is shift and tab is held
-                //	((isTab) && ((IsKeyPressed(403) != 0) || (IsKeyPressed(404) != 0)))); // key is tab and shift is held
-                //return isShiftTab; // Claim (Shift+Tab), ignore other keys
-                return false;
-            }
-
-            ~ClientDemo()
-            {
-            }
+			static ClientDemo& GetClientDemo() noexcept;
+			~ClientDemo() noexcept = default;
+			bool IsInitialized() const noexcept override;
+            void ResetStatsAndAchievements() const noexcept override;
+            char const* GetUserName() const noexcept override;
+			void Startup() const noexcept override;
+            void Shutdown() const noexcept override;
+            void Update() const noexcept override;
+            char const* GetAGSPluginName() const noexcept override;
+            char const* GetAGSPluginDesc() const noexcept override;
+			float GetVersion() const noexcept override;
+            bool ClaimKeyPress(int, int(*)(int)) const noexcept override;
         };
-
-        ClientDemo& GetClientDemo();
     } // namespace Demo
 } // namespace AGS2Client
 

@@ -20,31 +20,31 @@
 //
 //  0. You just DO WHAT THE FUCK YOU WANT TO.
 //
-#ifndef AGS2CLIENT_CLIENTSTATSDEMO_H
-#define AGS2CLIENT_CLIENTSTATSDEMO_H
-
-#include "ags2client/IClientStats.h"
+#include "ClientDemo.h"
+#include "ClientAchievementsDemo.h"
+#include "ClientLeaderboardsDemo.h"
+#include "ClientStatsDemo.h"
+using namespace AGS2Client::Demo;
 
 namespace AGS2Client
 {
-    namespace Demo
-    {
-        class ClientStatsDemo : public IClientStats
-        {
-		protected:
-			ClientStatsDemo() noexcept = default;
+	IAGS2Client* GetClient() noexcept
+	{
+		return &ClientDemo::GetClientDemo();
+	}
 
-        public:
-			static ClientStatsDemo& GetClientStatsDemo() noexcept;
-			~ClientStatsDemo() noexcept = default;
-			int GetIntStat(char const *) const noexcept override;
-			float GetFloatStat(char const*) const noexcept override;
-			float GetAverageRateStat(char const*) const noexcept override;
-			bool SetIntStat(char const*, int) const noexcept override;
-			bool SetFloatStat(char const*, float) const noexcept override;
-			bool UpdateAverageRateStat(char const*, float, float) const noexcept override;
-        };
-    } // namespace Demo
+	IClientAchievements* GetClientAchievements() noexcept
+	{
+		return &ClientAchievementsDemo::GetClientAchievementsDemo();
+	}
+
+	IClientLeaderboards* GetClientLeaderboards() noexcept
+	{
+		return &ClientLeaderboardsDemo::GetClientLeaderboardsDemo();
+	}
+
+	IClientStats* GetClientStats() noexcept
+	{
+		return &ClientStatsDemo::GetClientStatsDemo();
+	}
 } // namespace AGS2Client
-
-#endif // AGS2CLIENT_CLIENTSTATSDEMO_H

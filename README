@@ -4,3 +4,21 @@ intended to serve as an example of how to create non-
 functional stubs for proprietary client plugins.
 
 For more info, see the ags2client submodule.
+
+************
+UPDATE v1.1:
+************
+
+The demo has been updated to the latest version of the
+ags2client interface as of this writing (v2.0). With the
+release of the AGSGalaxy (GOG Galaxy) plugin and the updated
+version of the AGSteamStub (Steam stub) plugin, this demo is
+officially being deprecated and will not be further
+maintained with updates to the ags2client interface. For an
+up-to-date demo of how to use the latest version of the
+interface, please review the source code for these projects
+instead.
+
+https://github.com/monkey0506/agsteamstub
+
+https://bitbucket.org/monkey0506/agsgalaxy
